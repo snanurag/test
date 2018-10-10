@@ -21,7 +21,12 @@ build:
     # https://devcenter.wercker.com/development/steps/
   steps:
     - script:
+        name: version
+        code: |
+            export TAG=git tag --points-at HEAD | tail -1
+    - script:
         name: echo
         code: |
           echo "hello world!"
           echo $WERCKER_GIT_TAG
+          echo $TAG
